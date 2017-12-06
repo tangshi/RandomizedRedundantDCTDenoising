@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include <deque>
 #include <opencv2/core.hpp>
@@ -6,20 +5,12 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
 
-#define CV_VERSION_NUMBER CVAUX_STR(CV_MAJOR_VERSION) CVAUX_STR(CV_MINOR_VERSION) CVAUX_STR(CV_SUBMINOR_VERSION)
-
-#ifdef _DEBUG
-#pragma comment(lib, "opencv_core"CV_VERSION_NUMBER"d.lib")
-#pragma comment(lib, "opencv_highgui"CV_VERSION_NUMBER"d.lib")
-#pragma comment(lib, "opencv_imgcodecs"CV_VERSION_NUMBER"d.lib")
-#pragma comment(lib, "opencv_imgproc"CV_VERSION_NUMBER"d.lib")
-
-#else
-#pragma comment(lib, "opencv_core"CV_VERSION_NUMBER".lib")
-#pragma comment(lib, "opencv_highgui"CV_VERSION_NUMBER".lib")
-#pragma comment(lib, "opencv_imgcodecs"CV_VERSION_NUMBER".lib")
-#pragma comment(lib, "opencv_imgproc"CV_VERSION_NUMBER".lib")
-#endif
+/* required libs:
+    opencv_core
+    opencv_highgui
+    opencv_imgcodecs
+    opencv_imgproc
+*/
 
 double YPSNR(cv::InputArray src1, cv::InputArray src2);
 void addNoise(cv::InputArray src, cv::OutputArray dest, double sigma, double solt_papper_ratio = 0.0);

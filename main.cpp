@@ -12,16 +12,14 @@ using namespace std;
 using namespace cv;
 
 #define OPENCV_DCTDENOISE_AND_NLM
+
 #ifdef OPENCV_DCTDENOISE_AND_NLM
 #include <opencv2/xphoto.hpp>
 #include <opencv2/photo.hpp>
-#ifdef _DEBUG
-#pragma comment(lib, "opencv_photo"CV_VERSION_NUMBER"d.lib")
-#pragma comment(lib, "opencv_xphoto"CV_VERSION_NUMBER"d.lib")
-#else
-#pragma comment(lib, "opencv_photo"CV_VERSION_NUMBER".lib")
-#pragma comment(lib, "opencv_xphoto"CV_VERSION_NUMBER".lib")
-#endif
+/* required libs:
+    opencv_photo
+    opencv_xphoto 
+*/
 #endif
 
 void guiDenoise(Mat& src, Mat& dest, string wname = "denoise")
