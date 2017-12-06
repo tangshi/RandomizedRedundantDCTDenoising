@@ -1,5 +1,9 @@
 # RandomizedRedundantDCTDenoising
 
+**build with gcc**
+--------------
+run `build.sh` to build the program on ubuntu
+
 Project Page
 ------------
 http://fukushima.web.nitech.ac.jp/research/rrdct/
