@@ -15,7 +15,7 @@ void transpose16x16(const float* src, float* dest);
 void Hadamard1D4(float *val)
 {
 	__m128 xmm0, xmm1, xmm2, xmm3;
-	__declspec(align(16)) float sign[2][4] = { { 1.0f, -1.0f, 1.0f, -1.0f }, { 1.0f, 1.0f, -1.0f, -1.0f } };
+	__attribute__((align(16))) float sign[2][4] = { { 1.0f, -1.0f, 1.0f, -1.0f }, { 1.0f, 1.0f, -1.0f, -1.0f } };
 
 	xmm2 = _mm_load_ps(sign[0]);
 	xmm3 = _mm_load_ps(sign[1]);
@@ -35,8 +35,8 @@ void Hadamard1D8(float *val)
 {
 	__m128 xmm0, xmm1, xmm2;
 
-	__declspec(align(16)) float sign0[4] = { 1.0f, -1.0f, 1.0f, -1.0f };
-	__declspec(align(16)) float sign1[4] = { 1.0f, 1.0f, -1.0f, -1.0f };
+	__attribute__((align(16))) float sign0[4] = { 1.0f, -1.0f, 1.0f, -1.0f };
+	__attribute__((align(16))) float sign1[4] = { 1.0f, 1.0f, -1.0f, -1.0f };
 
 	xmm2 = _mm_load_ps(sign0);
 
@@ -75,7 +75,7 @@ void Hadamard1D16(float *val)
 {
 	__m128 xmm0, xmm1, xmm2;
 	__m128 mmadd0, mmadd1, mmadd2, mmadd3;
-	__declspec(align(16)) float sign[2][4] = { { 1.0f, -1.0f, 1.0f, -1.0f }, { 1.0f, 1.0f, -1.0f, -1.0f } };
+	__attribute__((align(16))) float sign[2][4] = { { 1.0f, -1.0f, 1.0f, -1.0f }, { 1.0f, 1.0f, -1.0f, -1.0f } };
 
 	xmm2 = _mm_load_ps(sign[0]);
 
@@ -151,7 +151,7 @@ void Hadamard1D16(float *val)
 
 void Hadamard1D16x16(float *val)
 {
-	__declspec(align(16)) float sign[2][4] = { { 1.0f, -1.0f, 1.0f, -1.0f }, { 1.0f, 1.0f, -1.0f, -1.0f } };
+	__attribute__((align(16))) float sign[2][4] = { { 1.0f, -1.0f, 1.0f, -1.0f }, { 1.0f, 1.0f, -1.0f, -1.0f } };
 	const __m128 sgn0 = _mm_load_ps(sign[0]);
 	const __m128 sgn1 = _mm_load_ps(sign[1]);
 
@@ -234,7 +234,7 @@ void Hadamard1Dn(float *val, size_t n)
 	size_t i, j, k;
 	__m128 xmm0, xmm1, xmm2;
 	float *addvalue, *subvalue;
-	__declspec(align(16)) float sign[2][4] = { { 1.0f, -1.0f, 1.0f, -1.0f }, { 1.0f, 1.0f, -1.0f, -1.0f } };
+	__attribute__((align(16))) float sign[2][4] = { { 1.0f, -1.0f, 1.0f, -1.0f }, { 1.0f, 1.0f, -1.0f, -1.0f } };
 
 	xmm2 = _mm_load_ps(sign[0]);
 	for (i = 0, addvalue = val; i < n; i += 4, addvalue++)
@@ -287,7 +287,7 @@ void divval(float* src, int size, float div)
 void divvalandthresh(float* src, int size, float thresh, float div)
 {
 	const __m128 h = _mm_set1_ps(div);
-	const int __declspec(align(16)) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
+	const int __attribute__((align(16))) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
 	const __m128 mth = _mm_set1_ps(thresh);
 	const __m128 zeros = _mm_setzero_ps();
 
@@ -369,11 +369,11 @@ void Hadamard2D4x4andThresh(float* src, float thresh)
 void Hadamard2D4x4andThreshandIDHT(float* src, float thresh)
 {
 	const __m128 h = _mm_set1_ps(0.25f);
-	const int __declspec(align(16)) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
+	const int __attribute__((align(16))) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
 	const __m128 mth = _mm_set1_ps(thresh);
 	const __m128 zeros = _mm_setzero_ps();
 
-	__declspec(align(16)) float sign[2][4] = { { 1.0f, -1.0f, 1.0f, -1.0f }, { 1.0f, 1.0f, -1.0f, -1.0f } };
+	__attribute__((align(16))) float sign[2][4] = { { 1.0f, -1.0f, 1.0f, -1.0f }, { 1.0f, 1.0f, -1.0f, -1.0f } };
 	float* val = src;
 
 	for (int i = 0; i < 4; i++)
@@ -563,8 +563,8 @@ void Hadamard2D8x8andThresh(float* src, float thresh)
 void Hadamard2D8x8i(float *vall)
 {
 	float* val = vall;
-	__declspec(align(16)) float sign0[4] = { 1.0f, -1.0f, 1.0f, -1.0f };
-	__declspec(align(16)) float sign1[4] = { 1.0f, 1.0f, -1.0f, -1.0f };
+	__attribute__((align(16))) float sign0[4] = { 1.0f, -1.0f, 1.0f, -1.0f };
+	__attribute__((align(16))) float sign1[4] = { 1.0f, 1.0f, -1.0f, -1.0f };
 
 	const __m128 sgn0 = _mm_load_ps(sign0);
 	const __m128 sgn1 = _mm_load_ps(sign1);
@@ -603,7 +603,7 @@ void Hadamard2D8x8i(float *vall)
 
 	float* src = vall;
 	{
-		__declspec(align(16)) float temp[16];
+		__attribute__((align(16))) float temp[16];
 		__m128 m0 = _mm_load_ps(src);
 		__m128 m1 = _mm_load_ps(src + 8);
 		__m128 m2 = _mm_load_ps(src + 16);
@@ -694,8 +694,8 @@ void Hadamard2D8x8i(float *vall)
 void Hadamard2D8x8i_and_thresh(float *vall, float thresh)
 {
 	float* val = vall;
-	__declspec(align(16)) float sign0[4] = { 1.0f, -1.0f, 1.0f, -1.0f };
-	__declspec(align(16)) float sign1[4] = { 1.0f, 1.0f, -1.0f, -1.0f };
+	__attribute__((align(16))) float sign0[4] = { 1.0f, -1.0f, 1.0f, -1.0f };
+	__attribute__((align(16))) float sign1[4] = { 1.0f, 1.0f, -1.0f, -1.0f };
 
 	const __m128 sgn0 = _mm_load_ps(sign0);
 	const __m128 sgn1 = _mm_load_ps(sign1);
@@ -735,7 +735,7 @@ void Hadamard2D8x8i_and_thresh(float *vall, float thresh)
 
 	float* src = vall;
 	{
-		__declspec(align(16)) float temp[16];
+		__attribute__((align(16))) float temp[16];
 		__m128 m0 = _mm_load_ps(src);
 		__m128 m1 = _mm_load_ps(src + 8);
 		__m128 m2 = _mm_load_ps(src + 16);
@@ -790,7 +790,7 @@ void Hadamard2D8x8i_and_thresh(float *vall, float thresh)
 	val = vall;
 
 	const __m128 h = _mm_set1_ps(0.125f);
-	const int __declspec(align(16)) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
+	const int __attribute__((align(16))) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
 	const __m128 mth = _mm_set1_ps(thresh);
 	const __m128 zeros = _mm_setzero_ps();
 

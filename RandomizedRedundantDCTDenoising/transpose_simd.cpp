@@ -83,7 +83,7 @@ void transpose8x8(const float* src, float* dest)
 
 void transpose8x8(float* src)
 {
-	__declspec(align(16)) float temp[16];
+	__attribute__((align(16))) float temp[16];
 	__m128 m0 = _mm_load_ps(src);
 	__m128 m1 = _mm_load_ps(src + 8);
 	__m128 m2 = _mm_load_ps(src + 16);
@@ -137,8 +137,8 @@ void transpose8x8(float* src)
 
 void transpose16x16(float* src)
 {
-	__declspec(align(16)) float temp[64];
-	__declspec(align(16)) float tmp[64];
+	__attribute__((align(16))) float temp[64];
+	__attribute__((align(16))) float tmp[64];
 	int sz = sizeof(float) * 8;
 	for (int i = 0; i < 8; i++)
 	{
@@ -176,8 +176,8 @@ void transpose16x16(float* src)
 
 void transpose16x16(const float* src, float* dest)
 {
-	__declspec(align(16)) float temp[64];
-	__declspec(align(16)) float tmp[64];
+	__attribute__((align(16))) float temp[64];
+	__attribute__((align(16))) float tmp[64];
 	int sz = sizeof(float) * 8;
 	for (int i = 0; i < 8; i++)
 	{

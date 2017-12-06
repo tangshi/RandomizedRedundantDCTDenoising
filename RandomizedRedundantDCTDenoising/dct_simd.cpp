@@ -228,7 +228,7 @@ static void fdct161d_sse(const float *s, float *d)
 #include <stdio.h>
 static void fdct161d_threshold_keep00_sse(const float *s, float *d, float th)
 {
-	const int __declspec(align(16)) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
+	const int __attribute__((align(16))) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
 	const __m128 mth = _mm_set1_ps(th);
 	const __m128 zeros = _mm_setzero_ps();
 
@@ -1144,7 +1144,7 @@ static void fdct88_sse_GT(const float *src, float *dst)
 
 static void fDCT8x8GT_threshold_keep00(const float *src, float *dst, float threshold)
 {
-	const int __declspec(align(16)) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
+	const int __attribute__((align(16))) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
 	const __m128 mth = _mm_set1_ps(threshold);
 	const __m128 zeros = _mm_setzero_ps();
 	const __m128 c0353 = _mm_set1_ps(0.353553390593274f);
@@ -1442,7 +1442,7 @@ static void idct81d_sse_GT(const float *s, float *d)
 
 static void fDCT2D8x4_and_threshold_keep00_32f(const float* x, float* y, float thresh)
 {
-	const int __declspec(align(16)) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
+	const int __attribute__((align(16))) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
 	const __m128 mth = _mm_set1_ps(thresh);
 	const __m128 zeros = _mm_setzero_ps();
 
@@ -1572,7 +1572,7 @@ static void fDCT2D8x4_and_threshold_keep00_32f(const float* x, float* y, float t
 
 static void fDCT2D8x4_and_threshold_32f(const float* x, float* y, float thresh)
 {
-	const int __declspec(align(16)) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
+	const int __attribute__((align(16))) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
 	const __m128 mth = _mm_set1_ps(thresh);
 	const __m128 zeros = _mm_setzero_ps();
 
@@ -1906,7 +1906,7 @@ void iDCT8x8GT(const float* s, float* d)
 
 void fDCT8x8(const float* s, float* d)
 {
-	__declspec(align(16)) float temp[64];
+	__attribute__((align(16))) float temp[64];
 	transpose8x8(s, temp);
 
 	fDCT2D8x4_32f(temp, d);
@@ -2176,7 +2176,7 @@ static void iDCT2D8x4_32f(const float* y, float* x)
 
 void iDCT8x8(const float* s, float* d)
 {
-	__declspec(align(16)) float temp[64];
+	__attribute__((align(16))) float temp[64];
 	transpose8x8((float*)s, temp);
 	iDCT2D8x4_32f(temp, d);
 	iDCT2D8x4_32f(temp + 4, d + 4);
@@ -2377,7 +2377,7 @@ static void dct4x4_1d_llm_inv_sse_and_transpose(float* s, float* d)
 
 void iDCT4x4(float* a, float* b)
 {
-	__declspec(align(16)) float temp[16];
+	__attribute__((align(16))) float temp[16];
 	dct4x4_1d_llm_inv_sse(a, temp);
 	transpose4x4(temp);
 	dct4x4_1d_llm_inv_sse(temp, b);
@@ -2404,7 +2404,7 @@ void iDCT4x4(float* a, float* b, float* temp)
 
 void fDCT4x4(float* a, float* b)
 {
-	__declspec(align(16)) float temp[16];
+	__attribute__((align(16))) float temp[16];
 	dct4x4_1d_llm_fwd_sse(a, temp);
 	transpose4x4(temp);
 	dct4x4_1d_llm_fwd_sse(temp, b);
@@ -2431,7 +2431,7 @@ void fDCT4x4(float* a, float* b, float* temp)
 
 static void fDCT2D4x4_and_threshold_keep00_32f(float* s, float* d, float thresh)
 {
-	const int __declspec(align(16)) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
+	const int __attribute__((align(16))) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
 	const __m128 mth = _mm_set1_ps(thresh);
 	const __m128 zeros = _mm_setzero_ps();
 	const __m128 c2 = _mm_set1_ps(1.30656f);//cos(CV_PI*2/16.0)*sqrt(2);
@@ -2472,7 +2472,7 @@ static void fDCT2D4x4_and_threshold_keep00_32f(float* s, float* d, float thresh)
 
 static void fDCT2D4x4_and_threshold_32f(float* s, float* d, float thresh)
 {
-	const int __declspec(align(16)) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
+	const int __attribute__((align(16))) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
 	const __m128 mth = _mm_set1_ps(thresh);
 	const __m128 zeros = _mm_setzero_ps();
 	const __m128 c2 = _mm_set1_ps(1.30656f);//cos(CV_PI*2/16.0)*sqrt(2);
@@ -2636,7 +2636,7 @@ void fDCT2x2_2pack_thresh_keep00_iDCT2x2_2pack(float* src, float* dest, float th
 	a = _mm_mul_ps(mm, _mm_add_ps(ms0, ms1));
 	b = _mm_mul_ps(mm, _mm_sub_ps(ms0, ms1));
 
-	const int __declspec(align(16)) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
+	const int __attribute__((align(16))) v32f_absmask[] = { 0x7fffffff, 0x7fffffff, 0x7fffffff, 0x7fffffff };
 	const __m128 mth = _mm_set1_ps(thresh);
 
 	__m128 msk = _mm_cmpgt_ps(_mm_and_ps(a, *(const __m128*)v32f_absmask), mth);
